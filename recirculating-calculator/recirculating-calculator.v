@@ -20,8 +20,10 @@
    $diff[31:0] = $val1 - $val2; 
    $prod[31:0] = $val1 * $val2; 
    $quot[31:0] = $val1 / $val2; 
-   $out[31:0] = $reset ? 0 : $out[31:0];
+   
    $out[31:0] = 
+    $reset 
+    ? 32'b0 :
     $op[1:0] == 3 
      ? $quot[31:0] : 
     $op[1:0] == 2 
