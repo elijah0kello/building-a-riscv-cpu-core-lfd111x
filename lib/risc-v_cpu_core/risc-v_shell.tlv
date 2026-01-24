@@ -43,8 +43,16 @@
    $reset = *reset;
    
    
-   // YOUR CODE HERE
-   // ...
+   // Program Counter
+   $pc[31:0] = >>1$next_pc;
+   $next_pc[31:0] = $reset ? 32'h0 : $pc + 32'h4;
+   
+   // Simplified Instruction Memory
+   `READONLY_MEM($pc, $$instr[31:0]);
+   
+   // Decode Logic
+   $is_u_instr = $instr[6:2] ==? 5'b0x101;
+   //$is_i_instr = $instr[6:2] ==
    
    
    // Assert these to end simulation (before Makerchip cycle limit).
