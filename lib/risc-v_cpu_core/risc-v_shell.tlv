@@ -50,9 +50,24 @@
    // Simplified Instruction Memory
    `READONLY_MEM($pc, $$instr[31:0]);
    
-   // Decode Logic
+   // Decode Logic Instr Type
    $is_u_instr = $instr[6:2] ==? 5'b0x101;
-   //$is_i_instr = $instr[6:2] ==
+   $is_i_instr = $instr[6:2] == 5'b00000
+                 || $instr[6:2] == 5'b00001
+                 || $instr[6:2] == 5'b00100
+                 || $instr[6:2] == 5'b00110
+                 || $instr[6:2] == 5'b11001;
+   $is_s_instr = $instr[6:2] == 5'b01000
+                 || $instr[6:2] == 5'b01001;
+   $is_r_instr = $instr[6:2] == 5'b01011
+                 || $instr[6:2] == 5'b01100
+                 || $instr[6:2] == 5'b01110
+                 || $instr[6:2] == 5'b10100;
+   $is_b_instr = $instr[6:2] == 5'b11000;
+   $is_j_instr = $instr[6:2] == 5'b11011;
+   
+   //Decode Logic Instr Fields
+   //$funct3 = 
    
    
    // Assert these to end simulation (before Makerchip cycle limit).
