@@ -77,8 +77,8 @@
    $rs2_valid = $is_r_instr || $is_s_instr || $is_b_instr; 
    $rs1_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
    $rd_valid = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
-   $imm_valid = !$is_r_instr;
-   $funct3_valid = 
+   $imm_valid = $is_i_instr || $is_s_instr || $is_b_instr || $is_u_instr || $is_j_instr;
+   $funct3_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
    
    // Consume hanging signals to deal with logs
    `BOGUS_USE($rd 
